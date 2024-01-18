@@ -1,6 +1,9 @@
+import 'package:expense_tracker/models/expenses.dart';
+import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'models/expenses.dart';
+import 'new_expense.dart';
 
 class ExpenseMain extends StatefulWidget {
   const ExpenseMain({super.key});
@@ -40,21 +43,37 @@ class _ExpenseState extends State<ExpenseMain> {
         category: Category.food)
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(context: context, builder: (cxt) {
+      return const NewExpenses();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Expense Tracker Flutter',
+          style: GoogleFonts.robotoMono(color: Colors.white, fontSize: 22),
+        ),
+        backgroundColor: Colors.blueAccent,
+        actions: [
+          IconButton(
+              onPressed: _openAddExpenseOverlay,
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ))
+        ],
+      ),
       body: Column(
         children: [
-          ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: _registeredExpenses.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 50,
-                  child: Center(child: Text('Entry ${_registeredExpenses[index]}')),
-                );
-              }
-          )
+          Text(
+            'chart',
+            style: GoogleFonts.robotoMono(fontSize: 20),
+          ),
+          Expanded(child: ExpensesList(expensesList: _registeredExpenses)),
         ],
       ),
     );
