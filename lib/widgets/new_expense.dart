@@ -11,6 +11,7 @@ class NewExpenses extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _NewExpenseState();
   }
+
 }
 
 class _NewExpenseState extends State<NewExpenses> {
