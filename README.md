@@ -1,6 +1,6 @@
 # expense_tracker
 
-A new Flutter project.
+A Sample Flutter project for Expense Tracker with Add/Delete/List/Chart functions.
 
 ## Getting Started
 
